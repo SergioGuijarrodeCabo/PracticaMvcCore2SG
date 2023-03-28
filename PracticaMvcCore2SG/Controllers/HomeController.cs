@@ -20,9 +20,28 @@ namespace PracticaMvcCore2SG.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? posicion)
         {
-            return View();
+
+            int numLibros = await this.repo.numLibros();
+            if(numLibros == null)
+            {
+                posicion = 0;
+            }
+            if(numLibros > numLibros)
+            {
+                posicion = 0;
+
+            }
+            if (numLibros < 0)
+            {
+                posicion = numLibros + 1;
+            }
+
+            List <Libro> libros = await this.repo.GetTodosLibros(posicion.Value);
+            ViewData["SIGUIENTE"] = posicion + 4;
+            ViewData["ANTERIOR"] = posicion - 4;
+            return View(libros);
         }
 
         public IActionResult Privacy()

@@ -75,7 +75,18 @@ namespace PracticaMvcCore2SG.Repositories
             return generos;
         }
 
-        
+        public async Task<List<Libro>> GetTodosLibros(int posicion)
+        {
+            List<Libro> libros = await this.context.Libros.ToListAsync();
+            return libros.Skip(posicion).Take(5).ToList();
+
+        }
+
+        public Task<int> numLibros()
+        {
+            return this.context.Libros.CountAsync();
+        }
+
 
         public async Task<List<Libro>> GetLibros(int idGenero)
         {

@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-}
+    ViewData["Title"] = "Home Page";}
+@model List<Libro>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@if(Model!=null){
+
+    @foreach(Libro libro in Model){
+            <div class="card" style="width: 18rem;">
+             <img src="~/images/@($"{libro.Portada}")">
+              <div class="card-body">
+                <h3 class="card-title">@libro.Titulo</h3>
+                @* <h5 class="card-title">@libro.Autor</h5>
+                <p class="card-text">@libro.Descripcion</p>*@
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+    }
+
+}
