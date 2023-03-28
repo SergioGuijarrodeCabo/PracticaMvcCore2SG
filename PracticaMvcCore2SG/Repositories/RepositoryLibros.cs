@@ -106,5 +106,23 @@ namespace PracticaMvcCore2SG.Repositories
             return consulta;
         }
 
+        public async Task<List<Pedido>> GetPedidos()
+        {
+            var consulta = await this.context.Pedidos.ToListAsync();
+            return consulta;
+        }
+
+        public async Task CrearPedido(Pedido pedido)
+        {
+            this.context.Pedidos.Add(pedido);
+            await this.context.SaveChangesAsync();
+        }
+
+        public async Task<int> MaxIdPedido()
+        {
+            int maxId = await this.context.Pedidos.MaxAsync(p => p.IdPedido);
+            return maxId + 1;
+        }
+
     }
 }

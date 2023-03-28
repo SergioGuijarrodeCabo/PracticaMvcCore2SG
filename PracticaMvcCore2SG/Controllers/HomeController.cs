@@ -28,7 +28,7 @@ namespace PracticaMvcCore2SG.Controllers
             {
                 posicion = 0;
             }
-            if(numLibros > numLibros)
+            if(posicion > numLibros)
             {
                 posicion = 0;
 

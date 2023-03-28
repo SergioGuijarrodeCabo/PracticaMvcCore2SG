@@ -14,15 +14,15 @@ namespace PracticaMvcCore2SG.Models
         [Column("IDPEDIDO")]
         public int IdPedido { get; set; }
         [Column("IDFACTURA")]
-        public string IdFactura { get; set; }
+        public int IdFactura { get; set; }
         [Column("FECHA")]
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         [Column("IDLIBRO")]
-        public string IdLibro { get; set; }
+        public int IdLibro { get; set; }
         [Column("IDUSUARIO")]
-        public string IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
         [Column("CANTIDAD")]
-        public string Cantidad { get; set; }
+        public int Cantidad { get; set; }
     
 
 

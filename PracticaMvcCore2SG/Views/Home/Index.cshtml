@@ -4,9 +4,10 @@
 }
 @model List<Libro>
 
-
+ 
 @if(Model!=null){
-    <a asp-action="Index" asp-route="Home" asp-posicion="@ViewData["ANTERIOR"]">Anterior</a>   <a asp-action="Index" asp-route="Home" asp-posicion="@ViewData["SIGUIENTE"]">Siguiente</a>
+    
+    <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Home" asp-posicion="@ViewData["ANTERIOR"]">Anterior</a>    <a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Home" asp-posicion="@ViewData["SIGUIENTE"]">Siguiente</a>
     @foreach(Libro libro in Model){
             <div class="card" style="width: 18rem;">
              <img src="~/images/@($"{libro.Portada}")">
@@ -14,7 +15,8 @@
                 <h3 class="card-title">@libro.Titulo</h3>
                 @* <h5 class="card-title">@libro.Autor</h5>
                 <p class="card-text">@libro.Descripcion</p>*@
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                 <a class="nav-link text-dark" asp-area="" asp-action="Detalles" asp-controller="Tienda" asp-route-idLibro="@libro.IdLibro">Detalles</a>
+
               </div>
             </div>
 

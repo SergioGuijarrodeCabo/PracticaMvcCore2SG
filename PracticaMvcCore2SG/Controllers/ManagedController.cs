@@ -39,6 +39,7 @@ namespace PracticaMvcCore2SG.Controllers
                 );
                 //Claim clamNombre = new Claim("NOMBRE", usuario.Nombre.ToString());
                 Claim claimName = new Claim(ClaimTypes.Name, Email);
+              
                 Claim claimId = new Claim(ClaimTypes.NameIdentifier, user.IdUsuario.ToString());
                 //Claim claimRole = new Claim(ClaimTypes.Role, user.);
 

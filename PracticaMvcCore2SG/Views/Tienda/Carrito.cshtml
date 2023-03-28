@@ -1,5 +1,90 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using System.Security.Claims
+@model IEnumerable<PracticaMvcCore2SG.Models.Libro>
+
 @{
+    ViewData["Title"] = "Carrito";
+    int cantidadItem = ViewBag.CANTIDAD;
+    List<Libro> libros = new List<Libro>();
 }
+
+<h1>Carrito</h1>
+
+<form method="post">
+    <input type="hidden" value="@Context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value" name="idusuario" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdLibro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Autor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+       
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdLibro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+    
+                <td>
+                    <div>
+                        <input type="number" min="0" max="30" value="@cantidadItem" name="cantidadItem[@item.IdLibro]" />
+                        <button class="increment-amount" data-item-id="@cantidadItem">+</button>
+                        <button class="decrement-amount" data-item-id="@cantidadItem">-</button>
+    
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <input type="hidden" name="libros" id="libros-input" />
+
+    <button id="bForm" type="submit"></button>
+    
+</form>
+ <button onclick="FinalizarCompra()">FINALIZAR COMPRA</button>
+ <button  onclick="FinalizarCompra()">FINALIZAR COMPRA</button>
+<script>
+    function FinalizarCompra() {
+
+        
+        const inputs = document.querySelectorAll('input[name^="cantidadItem"]');
+        const libros = [];
+
+        inputs.forEach(input => {
+            const idLibro = input.name.match(/\[(\d+)\]/)[1];
+            const cantidad = parseInt(input.value);
+
+            if (cantidad > 0) {
+                libros.push({ idLibro, cantidad });
+            }
+        });
+
+        document.getElementById('libros-input').value = JSON.stringify(libros);
+    }
+
+
+  $('#bForm').click();
+
+    
+</script>

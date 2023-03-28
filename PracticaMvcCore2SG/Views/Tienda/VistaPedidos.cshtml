@@ -1,0 +1,56 @@
+﻿@model List<Pedido>
+
+@if(Model !=null){
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id pedido
+            </th>
+            <th>
+               Id factura
+            </th>
+            <th>
+               Fecha
+            </th>
+            <th>
+               Idlibro
+            </th>
+             <th>
+               Id usuario
+            </th>
+              <th>
+               cantidad
+            </th>
+   
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdLibro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+
+           
+        </tr>
+}
+    </tbody>
+</table>
+
+
+}
