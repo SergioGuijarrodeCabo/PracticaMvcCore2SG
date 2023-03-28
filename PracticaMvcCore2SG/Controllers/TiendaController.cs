@@ -27,5 +27,44 @@ namespace PracticaMvcCore2SG.Controllers
             return View(libro);
 
         }
+
+
+
+       
+        public async Task<IActionResult> Carrito(int cantidadItem)
+        {
+            List<int> listidproducts = HttpContext.Session.GetObject<List<int>>("CARRITO");
+            List<Libro> items = new List<Libro>();
+            if (listidproducts != null)
+            {
+                foreach (int id in listidproducts)
+                {
+                    Item item = await this.repo.FindItemAsync(id);
+                    items.Add(item);
+                }
+            }
+            ViewBag.CANTIDAD = cantidadItem;
+            return View(items);
+        }
+
+
+        public IActionResult AgregarCarrito(int idProduct)
+        {
+            List<int> listidproducts = HttpContext.Session.GetObject<List<int>>("CARRITO");
+
+            //COMPROBAR SI CARRITO ESTA EN SESSION
+            if (listidproducts != null)
+            {
+                listidproducts.Add(idProduct);
+                HttpContext.Session.SetObject("CARRITO", listidproducts);
+            }
+            else
+            {
+                //CREAR CARRITO EN SESSION
+                List<int> Nueva_listidproducts = new List<int> { idProduct };
+                HttpContext.Session.SetObject("CARRITO", Nueva_listidproducts);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

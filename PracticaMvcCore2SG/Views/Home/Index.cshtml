@@ -1,10 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";}
+    ViewData["Title"] = "Home Page";
+    
+}
 @model List<Libro>
 
 
 @if(Model!=null){
-
+    <a asp-action="Index" asp-route="Home" asp-posicion="@ViewData["ANTERIOR"]">Anterior</a>   <a asp-action="Index" asp-route="Home" asp-posicion="@ViewData["SIGUIENTE"]">Siguiente</a>
     @foreach(Libro libro in Model){
             <div class="card" style="width: 18rem;">
              <img src="~/images/@($"{libro.Portada}")">
