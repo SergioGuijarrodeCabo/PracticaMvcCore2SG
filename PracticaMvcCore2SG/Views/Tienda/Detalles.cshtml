@@ -1,0 +1,20 @@
+﻿@model Libro
+
+
+@if(Model !=null){
+
+
+       <div class="card" style="width: 18rem;">
+         <img src="~/images/@($"{Model.Portada}")">
+          <div class="card-body">
+            <h3 class="card-title">@Model.Titulo</h3>
+           <h4 class="card-title">@Model.Editorial</h4>
+            <h5 class="card-title">@Model.Autor</h5>
+            <h6 class="card-title">@Model.Precio</h6>
+            <p class="card-text">@Model.Resumen</p>
+
+          @*  <a href="#" class="btn btn-primary">Añadir a carrito</a>*@
+          </div>
+        </div>
+
+}

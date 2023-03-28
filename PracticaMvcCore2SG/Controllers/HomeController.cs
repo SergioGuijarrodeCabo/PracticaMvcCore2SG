@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PracticaMvcCore2SG.Models;
+using PracticaMvcCore2SG.Repositories;
 using System.Diagnostics;
 
 namespace PracticaMvcCore2SG.Controllers
 {
     public class HomeController : Controller
     {
+        public RepositoryLibros repo {get;set;}
+
+
+       
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RepositoryLibros repo)
         {
+            this.repo = repo;
             _logger = logger;
         }
 
