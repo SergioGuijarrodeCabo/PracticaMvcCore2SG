@@ -24,7 +24,7 @@ namespace PracticaMvcCore2SG.Controllers
         {
 
             int numLibros = await this.repo.numLibros();
-            if(numLibros == null)
+            if(posicion == null)
             {
                 posicion = 0;
             }
